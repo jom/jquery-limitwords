@@ -1,6 +1,17 @@
+/*
+ * jQuery limitWords Plugin
+ *
+ * Licensed under The MIT License
+ * Redistributions of files must retain the copyright notice.
+ *
+ * @copyright		Copyright 2010 Jacob Morrison <jomorrison gmail com>, http://projects.ofjacob.com
+ * @license			http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @author			Jacob Morrison <jomorrison gmail com>
+*/
+
 jQuery.fn.limitWords = function(options){
 	var d = {
-		'counterElement':		false,
+		'leftSelector':		false,
 		'limit':				250,
 		'underColor':			'green',
 		'atColor':				'orange'
@@ -20,8 +31,8 @@ jQuery.fn.limitWords = function(options){
 		
 		if(d.limit){
 			if(num_words > d.limit){ // over... copied in, trim it!
-				if(d.counterElement && d.atColor){
-					$(d.counterElement).css('color', d.overColor);
+				if(d.leftSelector && d.atColor){
+					$(d.leftSelector).css('color', d.overColor);
 				}
 				$(this).val(words.splice(0, d.limit).join(' '));
 				left = 0;
@@ -29,17 +40,17 @@ jQuery.fn.limitWords = function(options){
 			}
 			
 			if(left == 0){ // at 
-				if(d.counterElement && d.atColor){
-					$(d.counterElement).css('color', d.atColor);
+				if(d.leftSelector && d.atColor){
+					$(d.leftSelector).css('color', d.atColor);
 				}
 			}else{ // under... we coo
-				if(d.counterElement && d.underColor){
-					$(d.counterElement).css('color', d.underColor);
+				if(d.leftSelector && d.underColor){
+					$(d.leftSelector).css('color', d.underColor);
 				}
 			}
 			
-			if(d.counterElement){
-				$(d.counterElement).html(Math.abs(left) +" left");
+			if(d.leftSelector){
+				$(d.leftSelector).html(Math.abs(left) +" left");
 			}
 			return mreturn;
 		}
